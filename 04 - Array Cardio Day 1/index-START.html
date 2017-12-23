@@ -31,29 +31,67 @@
 
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
+    const one = inventors.filter(inventor => (
+      inventor.year >= 1500 && inventor.year < 1600
+    ))
+    console.log('1: Array.prototype.filter()', one);
 
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
+    const two = inventors.map(inventor => (
+      `${inventor.first} ${inventor.last}`
+    ))
+    console.log('Array.prototype.map()', two);
 
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
+    const three = inventors.sort((x, y) => (x.year - y.year))
+    console.log('3: Array.prototype.sort()', three)
 
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
+    const four = inventors.reduce((total, inventor) => (
+      total + (inventor.passed - inventor.year)
+    ), 0)
+    console.log('4: Array.prototype.reduce()', four);
 
     // 5. Sort the inventors by years lived
+    const five = inventors.sort((x, y) => {
+      const prev = x.passed - x.year;
+      const next = y.passed - y.year;
+      return prev - next;
+    })
+    console.log('5:', five);
 
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+    // const category = document.querySelector('.mw-category');
+    // const links = Array.from(category.querySelectorAll('a'));
+    // const de = links.map(link => link.textContent);
+    //
+    // de.filter(streetName => streetName.includes('de'));
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const seven = people.sort((x, y) => {
+      const [xLast, xFirst] = x.split(', ');
+      const [yLast, yFirst] = y.split(', ');
+      return xLast > yLast ? 1 : -1;
+    })
+    console.log('7', seven)
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    let eight = {};
+    data.forEach(word => {
+      if (eight[word]) {
+        eight[word] += 1;
+      } else {
+        eight[word] = 0;
+      }
+    })
+    console.log('8', eight)
   </script>
 </body>
 </html>
